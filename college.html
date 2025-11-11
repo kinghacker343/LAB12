@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College of Engineering - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. Global & Reset Styles --- */
+        :root {
+            --primary-color: #172a3a; /* Dark Blue/Navy */
+            --secondary-color: #ff9900; /* Orange/Accent */
+            --light-bg: #f7f7f7;
+            --dark-text: #333;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        h2 {
+            font-family: 'Oswald', sans-serif;
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        /* Subtle separator for headings */
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* --- 2. Header & Navigation --- */
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: sticky; /* Keeps the nav bar visible */
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-family: 'Oswald', sans-serif;
+            margin: 0;
+            font-size: 1.8em;
+            letter-spacing: 1px;
+        }
+
+        header nav ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 1em;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+
+        header a:hover {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        /* --- 3. Section Styles --- */
+        section {
+            padding: 60px 0;
+            background: white;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Vision & Mission Styling (Flex Layout) */
+        #vision .vm-grid {
+            display: flex;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        #vision .content-box {
+            flex: 1; /* Makes both boxes equal width */
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: var(--light-bg);
+        }
+
+        #vision .content-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #vision .content-box h3 {
+            color: var(--secondary-color);
+            margin-top: 0;
+            font-size: 1.5em;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        /* --- 4. Courses Offered (Table) --- */
+        #courses table {
+            width: 80%;
+            margin: 30px auto; /* Centered table */
+            border-collapse: collapse;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden; /* Important for rounding corners */
+        }
+
+        #courses th, #courses td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        #courses th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        #courses tr:nth-child(even) {
+            background-color: #f0f0f0;
+        }
+        
+        #courses tr:hover {
+            background-color: #ffecc6; /* Hover effect */
+        }
+
+        /* --- 5. Image Gallery --- */
+        #gallery {
+            background-color: #f0f8ff; /* Light blue background for visual separation */
+        }
+        
+        #gallery .gallery-grid {
+            display: grid; /* Using CSS Grid for modern layout */
+            grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        #gallery .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        #gallery .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .img-placeholder {
+            width: 100%;
+            height: 200px; 
+            background-color: #b3d9ff; /* Placeholder color */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        
+        /* --- 6. Top Recruiters --- */
+        #recruiters {
+            text-align: center;
+        }
+        
+        #recruiters .recruiter-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        #recruiters .recruiter-list span {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px; /* Pill shape */
+            font-weight: 700;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s;
+        }
+        
+        #recruiters .recruiter-list span:hover {
+            background-color: var(--secondary-color);
+        }
+
+
+        /* --- 7. Footer --- */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 0; /* Attach to last section */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>COLLEGE OF ENGINEERING</h1>
+            <nav>
+                <ul>
+                    <li><a href="#vision">Vision</a></li>
+                    <li><a href="#pso">Outcomes</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#recruiters">Recruiters</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="vision">
+        <div class="container">
+            <h2>Our Vision & Mission</h2>
+            <div class="vm-grid">
+                <div class="content-box">
+                    <h3>Vision</h3>
+                    <p>To be a premier institution recognized for excellence in engineering education, research, and innovation, preparing ethical leaders for a global society, shaping the future with responsible technology.</p>
+                </div>
+
+                <div class="content-box">
+                    <h3>Mission</h3>
+                    <ul>
+                        <li>**M1:** Provide a rigorous and contemporary curriculum supported by state-of-the-art infrastructure.</li>
+                        <li>**M2:** Foster a culture of research and entrepreneurial spirit among students and faculty.</li>
+                        <li>**M3:** Instill professional ethics, leadership qualities, and social responsibility in graduates.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pso">
+        <div class="container">
+            <h2>Program Specific Outcomes (PSOs)</h2>
+            <p style="text-align: center; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">Our graduates will be able
+                 to demonstrate competence in the following areas, specific to their chosen program, ensuring they are industry-ready innovators.</p>
+            <div class="vm-grid">
+                 <div class="content-box">
+                    <h3>PSO 1: Technical Mastery</h3>
+                    <p>Ability to apply fundamental principles of science and engineering to design and implement complex systems and sustainable
+                         solutions in their respective domains.</p>
+                </div>
+                <div class="content-box">
+                    <h3>PSO 2: Global Readiness</h3>
+                    <p>Proficiency in utilizing modern engineering tools, data analytics, and software platforms required for 
+                        contemporary industry practices and cross-disciplinary projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses">
+        <div class="container">
+            <h2>Academic Programs</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Program</th>
+                        <th>Duration</th>
+                        <th>Focus Areas</th>
+                        <th>Intake Capacity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>B.Tech. Computer Science and Engineering (CSE)</td>
+                        <td>4 Years</td>
+                        <td>AI, Cloud Computing, Cybersecurity</td>
+                        <td>180</td>
+                    </tr>
+                    <tr>
+                        <td>B.Tech. Electronics and Communication Engineering (ECE)</td>
+                        <td>4 Years</td>
+                        <td>VLSI Design, IoT, Embedded Systems</td>
+                        <td>120</td>
+                    </tr>
+                    <tr>
+                        <td>B.Tech. Mechanical Engineering (ME)</td>
+                        <td>4 Years</td>
+                        <td>Robotics, Advanced Manufacturing, Thermal Sciences</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>M.Tech. Structural Engineering</td>
+                        <td>2 Years</td>
+                        <td>Advanced Concrete Structures, Earthquake Engineering</td>
+                        <td>30</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h2>Campus & Events Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="Tech Innovation Summit.jpg">Tech Innovation Summit </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="Central Library & Labs.jpg">Central Library & Labs </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="Annual Sports Day.jpg">Annual Sports Day </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="Placement Drive Success.jpg">Placement Drive Success </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="Faculty Research Lab.jpg">Faculty Research Lab </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="Cultural Fest Performance.jpg">Cultural Fest Performance </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recruiters">
+        <div class="container">
+            <h2>Our Top Recruiters</h2>
+            <p>Our students are placed in the best companies worldwide, a testament to our quality education and industry alignment.</p>
+            <div class="recruiter-list">
+                <span>TechCorp Solutions</span>
+                <span>Global Innovators</span>
+                <span>DataStream Analytics</span>
+                <span>FutureForge Motors</span>
+                <span>AeroTech Systems</span>
+                <span>InfraBuild Co.</span>
+                <span>FinServe Bank</span>
+                <span>EcoPower Systems</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 College of Engineering. All rights reserved. | Developed with HTML & CSS</p>
+        </div>
+    </footer>
+
+</body>
+</html>
